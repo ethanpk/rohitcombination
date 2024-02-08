@@ -19,6 +19,9 @@ PPT = [float(val.strip()) for val in PPT.split(',')]
 # Generate output
 output_df = generate_output(PT, WT, PPT)
 
+# Update the DataFrame index to start from 1
+output_df.index = output_df.index + 1
+
 # Display formatted output
 st.write("Generated Output List:")
 st.dataframe(output_df)
