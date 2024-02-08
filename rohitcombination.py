@@ -1,7 +1,8 @@
 import streamlit as st
+import pandas as pd
 
 def generate_output(PT, WT, PPT):
-    return [(a, b, c) for a in PT for b in WT for c in PPT]
+    return pd.DataFrame([(a, b, c) for a in PT for b in WT for c in PPT], columns=["PT", "WT", "PPT"])
 
 st.title("Streamlit Web App")
 
@@ -16,8 +17,8 @@ WT = [float(val.strip()) for val in WT.split(',')]
 PPT = [float(val.strip()) for val in PPT.split(',')]
 
 # Generate output
-output_list = generate_output(PT, WT, PPT)
+output_df = generate_output(PT, WT, PPT)
 
-# Display output
+# Display formatted output
 st.write("Generated Output List:")
-st.write(output_list)
+st.dataframe(output_df)
